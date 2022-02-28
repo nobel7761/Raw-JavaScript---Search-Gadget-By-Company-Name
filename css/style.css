@@ -3,3 +3,16 @@
     padding: 0;
 }
 
+.search {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.search-results{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 50px;
+    place-items: center;
+}

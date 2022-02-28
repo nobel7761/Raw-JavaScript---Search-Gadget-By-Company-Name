@@ -14,21 +14,30 @@
 </head>
 
 <body>
-    <main class="container mt-5">
-        <div class="card w-50 mx-auto shadow p-3 mb-5 bg-body rounded">
-            <h5 class="card-header text-center bg-transparent">Search Your Desired Phone Here!</h5>
-            <nav class="navbar navbar-light mx-auto">
-                <div>
-                    <form class="d-flex">
-                        <input class="form-control me-2 w-100" type="search" placeholder="Search" id="search-input">
-                        <button class="btn btn-outline-success" type="submit" id="search-button">Search</button>
-                    </form>
+    <!-- main and search part -->
+    <main>
+        <!-- search section  -->
+        <section>
+            <div class="container mt-5 text-center text-uppercase">
+                <h1>Phone Searching World!</h1>
+                <div class=" search w-75 mx-auto shadow p-4 rounded">
+                    <input id='search-input' type="text" class="form-control border-1 text-center"
+                        placeholder="type here">
+                    <!-- search button -->
+                    <button onclick="search()" id="searh_btn" class="btn btn-primary ms-5">
+                        SEARCH
+                    </button>
                 </div>
-            </nav>
-        </div>
-    </main>
-    <header>
 
+            </div>
+        </section>
+    </main>
+
+    <!-- search result part -->
+    <header>
+        <div class="search-results container" id='search-results'>
+
+        </div>
     </header>
 
 
