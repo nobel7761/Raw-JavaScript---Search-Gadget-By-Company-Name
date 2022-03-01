@@ -3,9 +3,7 @@
     padding: 0;
 }
 
-body{
-    background-color: rgb(216, 214, 214);
-}
+
 
 
 .search {
@@ -31,4 +29,51 @@ body{
 
 .brand_name{
     color: red;
+}
+
+.empty-inputField{
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+    display: none;
+}
+
+.phone-detail{
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 50px;
+    margin-bottom: 5%;
+    padding: 20px;
+}
+
+
+/* .phone-detail-section{
+    display: flex;
+    justify-content:space-evenly;
+    background-color: white;
+    
+} */
+
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+.details img{
+    width: 300px;
+}
+
+
+
+.results-number-section{
+    color: red;
+    font-weight: bold;
+    display: none;
+
 }

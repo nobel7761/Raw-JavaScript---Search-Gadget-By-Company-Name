@@ -15,7 +15,7 @@
 
 <body>
     <!-- main and search part -->
-    <main>
+    <header>
         <!-- search section  -->
         <section>
             <div class="container mt-5 text-center text-uppercase">
@@ -29,19 +29,33 @@
                         SEARCH
                     </button>
                 </div>
-
-                <p class="no-search-result" id="no-search-result">Please type something and then search</p>
-
             </div>
         </section>
-    </main>
+        <p id="results-number-section" class="results-number-section container text-center"><span
+                id="results-number"></span> Results Found!!!</p>
+    </header>
 
-    <!-- search result part -->
-    <header>
+    <main>
+        <!-- alert message part -->
+        <section class="container text-center text-uppercase">
+            <p class="no-search-result" id="empty-inputField">Please type something and then search!!!</p>
+            <p class="empty-inputField" id="no-search-result">No Phone Found. Please Try Again!!!</p>
+        </section>
+
+        <!-- phone details part -->
+        <div id="phone-details">
+
+        </div>
+
+        <!-- search result part -->
         <div class="search-results container" id='search-results'>
 
         </div>
-    </header>
+
+
+
+
+    </main>
 
 
 
