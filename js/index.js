@@ -1,5 +1,5 @@
 const searchResults = document.getElementById('search-results');
-const detailSection = document.getElementById('phone-details');
+const detailSection = document.getElementById('product-details');
 
 const search = () => {
     let searchText = document.getElementById('search-input').value;
@@ -69,13 +69,13 @@ const phoneDetails = (details) => {
     detailSection.textContent = '';
     const detailDiv = document.createElement('div');
     detailDiv.innerHTML = `
-        <div class="phone-detail rounded shadow">
-            <div class="details">
-                <img src="${details.image}">
+        <div class="product-detail rounded shadow">
+            <div class="product-detail-left">
+                <img src="${details.image}" class="img-fluid">
                 <h4 class="text-primary">${details.name}</h4>
             </div>
-            <div>
-                <p class="text-danger">${details.releaseDate}</p>
+            <div class="product-detail-middle">
+                <p class="text-danger text-center">${details.releaseDate}</p>
 
                 <h5 ><b><u>Main Features:</u></b> </h5>
                 <p><b>Storage: </b><span>${details.mainFeatures.storage}</span></p>
@@ -85,7 +85,7 @@ const phoneDetails = (details) => {
                 <p><b>Sensors: </b><span>${details.mainFeatures.sensors}</span></p>
             </div>
 
-            <div>
+            <div class="product-detail-right">
                 <h5><b><u>Other Features:</u></b> </h5>
                 <p><b>WLAN: </b><span>${details.others.WLAN}</span></p>
                 <p><b>Bluetooth: </b><span>${details.others.Bluetooth}</span></p>
