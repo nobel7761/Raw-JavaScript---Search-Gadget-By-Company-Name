@@ -40,7 +40,7 @@ const searchPhone = (phones) => {
         document.getElementById('results-number-section').style.display = 'block';
         document.getElementById('results-number').innerText = phones.length;
 
-        phones.splice(1, 20).map(phone => {
+        phones.splice(0, 20).map(phone => {
             const div = document.createElement('div');
             div.innerHTML = `
             <div class="card shadow rounded p-3" style="width: 18rem;">
