@@ -19,15 +19,18 @@
         <!-- search section  -->
         <section>
             <div class="container mt-5 text-center text-uppercase">
-                <h1>Phone Searching World!</h1>
-                <div class=" search w-75 mx-auto shadow p-4 rounded">
-                    <input id='search-input' type="text" class="form-control border-1 text-center"
-                        placeholder="type here">
+                <h1>Phone World!</h1>
+
+                <div class="search w-75 mx-auto shadow p-4 rounded">
+                    <input id='search-input' type="text"
+                        class="form-control bg-transparent border-2 border-primary text-center" placeholder="TYPE HERE">
                     <!-- search button -->
                     <button onclick="search()" id="searh_btn" class="btn btn-primary ms-5">
                         SEARCH
                     </button>
                 </div>
+
+                <p class="no-search-result" id="no-search-result">Please type something and then search</p>
 
             </div>
         </section>
