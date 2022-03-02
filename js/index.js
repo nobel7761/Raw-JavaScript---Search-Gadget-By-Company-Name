@@ -137,7 +137,7 @@ const phoneDetails = (details) => {
     detailDiv.innerHTML = `
         <div class="product-detail rounded shadow" >
             <div class="product-detail-left">
-                <i class="icon fa-solid fa-circle-xmark" onclick="productDetailClose()" id="icon"></i>
+                <i onclick="productDetailClose()" class="icon fa-solid fa-circle-xmark" id="icon"></i>
                 <img src="${details.image}" class="img-fluid">
                 <h4 class="text-primary">${details.name}</h4>
                 <p class="text-danger text-center">${details.releaseDate ? details.releaseDate : "No Release Date Found!!!"}</p>
@@ -165,8 +165,7 @@ const phoneDetails = (details) => {
     detailSection.appendChild(detailDiv);
 }
 
+// phone details window close function
 const productDetailClose = () => {
-    document.getElementById('icon').addEventListener('click', () => {
-        document.getElementById('product-details').textContent = '';
-    })
+    document.getElementById('product-details').textContent = '';
 }
