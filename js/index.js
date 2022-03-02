@@ -38,23 +38,57 @@ const searchPhone = (phones) => {
         document.getElementById('no-search-result').style.display = 'none';
         document.getElementById('empty-inputField').style.display = 'none';
         document.getElementById('results-number-section').style.display = 'block';
-        document.getElementById('results-number').innerText = phones.length;
+        document.getElementById('results-number-section').innerText = `20 Results Shown out of ${phones.length} Results!!!`;
 
-        phones.splice(0, 20).map(phone => {
-            const div = document.createElement('div');
-            div.innerHTML = `
-            <div class="card shadow rounded p-3" style="width: 18rem;">
-                <img src="${phone.image}" class="card-img-top mx-auto img-fluid w-75">
-                 <div class="card-body  d-flex flex-column">
-                     <h5 class="card-title text-center">${phone.phone_name}</h5>
-                     <h5 class="brand_name text-center">${phone.brand}</h5>
-                     <a href="#" onclick="getPhone('${phone.slug}')" class="btn btn-primary mx-auto">Show Details</a>
-                </div>
-            </div>
-            `
-            searchResults.appendChild(div)
-            // console.log(phone)
-        })
+        if (phones.length > 20) {
+            phones.slice(0, 20).map(phone => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <div class="card shadow rounded p-3" style="width: 18rem;">
+                        <img src="${phone.image}" class="card-img-top mx-auto img-fluid w-75">
+                        <div class="card-body  d-flex flex-column">
+                            <h5 class="card-title text-center">${phone.phone_name}</h5>
+                            <h5 class="brand_name text-center">${phone.brand}</h5>
+                            <a href="#" onclick="getPhone('${phone.slug}')" class="btn btn-primary mx-auto">Show Details</a>
+                        </div>
+                    </div>
+                `
+                searchResults.appendChild(div)
+                // console.log(phone)
+            })
+            const seeMore = document.getElementById('see-more-btn');
+            seeMore.style.display = 'block';
+            seeMore.addEventListener('click', () => {
+                detailSection.textContent = '';
+                searchResults.textContent = '';
+                document.getElementById('search-input').value = '';
+                document.getElementById('no-search-result').style.display = 'none';
+                document.getElementById('empty-inputField').style.display = 'none';
+                document.getElementById('results-number-section').style.display = 'block';
+                document.getElementById('results-number-section').innerText = `${phones.length} Results Shown out of ${phones.length} Results!!!`;
+
+                phones.map(phone => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <div class="card shadow rounded p-3" style="width: 18rem;">
+                            <img src="${phone.image}" class="card-img-top mx-auto img-fluid w-75">
+                            <div class="card-body  d-flex flex-column">
+                                <h5 class="card-title text-center">${phone.phone_name}</h5>
+                                <h5 class="brand_name text-center">${phone.brand}</h5>
+                                <a href="#" onclick="getPhone('${phone.slug}')" class="btn btn-primary mx-auto">Show Details</a>
+                            </div>
+                        </div>
+                    `
+                    searchResults.appendChild(div)
+                    // console.log(phone)
+                })
+
+                seeMore.style.display = 'none';
+            })
+
+        }
+
+
     }
 }
 
@@ -75,7 +109,7 @@ const phoneDetails = (details) => {
                 <h4 class="text-primary">${details.name}</h4>
             </div>
             <div class="product-detail-middle">
-                <p class="text-danger text-center">${details.releaseDate}</p>
+                <p class="text-danger text-center">${details.releaseDate ? details.releaseDate : "No Release Date Found!!!"}</p>
 
                 <h5 ><b><u>Main Features:</u></b> </h5>
                 <p><b>Storage: </b><span>${details.mainFeatures.storage}</span></p>
@@ -87,12 +121,12 @@ const phoneDetails = (details) => {
 
             <div class="product-detail-right">
                 <h5><b><u>Other Features:</u></b> </h5>
-                <p><b>WLAN: </b><span>${details.others.WLAN}</span></p>
-                <p><b>Bluetooth: </b><span>${details.others.Bluetooth}</span></p>
-                <p><b>GPS: </b><span>${details.others.GPS}</span></p>
-                <p><b>NFC: </b><span>${details.others.NFC}</span></p>
-                <p><b>Radio: </b><span>${details.others.Radio}</span></p>
-                <p><b>USB: </b><span>${details.others.USB}</span></p>
+                <p><b>WLAN: </b><span>${details.others ? details.others.WLAN : 'No Information Found!'}</span></p>
+                <p><b>Bluetooth: </b><span>${details.others ? details.others.Bluetooth : 'No Information Found!'}</span></p>
+                <p><b>GPS: </b><span>${details.others ? details.others.GPS : 'No Information Found!'}</span></p>
+                <p><b>NFC: </b><span>${details.others ? details.others.NFC : 'No Information Found!'}</span></p>
+                <p><b>Radio: </b><span>${details.others ? details.others.Radio : 'No Information Found!'}</span></p>
+                <p><b>USB: </b><span>${details.others ? details.others.USB : 'No Information Found!'}</span></p>
             </div>
         </div>
     `
