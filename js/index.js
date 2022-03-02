@@ -12,6 +12,7 @@ const search = () => {
         document.getElementById('empty-inputField').style.display = 'block';
         document.getElementById('no-search-result').style.display = 'none';
         document.getElementById('results-number-section').style.display = 'none';
+        document.getElementById('see-more-btn').style.display = 'none';
     }
     else {
         fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
@@ -29,11 +30,13 @@ const searchPhone = (phones) => {
         document.getElementById('empty-inputField').style.display = 'none'
         document.getElementById('no-search-result').style.display = 'block'
         document.getElementById('results-number-section').style.display = 'none';
+        document.getElementById('see-more-btn').style.display = 'none';
     }
-    else if (phones.length > 0) {
+    else if (phones.length > 0 && phones.length >= 20) {
         console.log(phones.length);
         detailSection.textContent = '';
         searchResults.textContent = '';
+        document.getElementById('see-more-btn').style.display = 'none';
         document.getElementById('search-input').value = '';
         document.getElementById('no-search-result').style.display = 'none';
         document.getElementById('empty-inputField').style.display = 'none';
@@ -82,13 +85,34 @@ const searchPhone = (phones) => {
                     searchResults.appendChild(div)
                     // console.log(phone)
                 })
-
                 seeMore.style.display = 'none';
             })
-
         }
-
-
+    }
+    else {
+        detailSection.textContent = '';
+        searchResults.textContent = '';
+        document.getElementById('see-more-btn').style.display = 'none';
+        document.getElementById('search-input').value = '';
+        document.getElementById('no-search-result').style.display = 'none';
+        document.getElementById('empty-inputField').style.display = 'none';
+        document.getElementById('results-number-section').style.display = 'block';
+        document.getElementById('results-number-section').innerText = `${phones.length} Results Shown out of ${phones.length} Results!!!`;
+        phones.map(phone => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <div class="card shadow rounded p-3" style="width: 18rem;">
+                    <img src="${phone.image}" class="card-img-top mx-auto img-fluid w-75">
+                    <div class="card-body  d-flex flex-column">
+                        <h5 class="card-title text-center">${phone.phone_name}</h5>
+                        <h5 class="brand_name text-center">${phone.brand}</h5>
+                        <a href="#" onclick="getPhone('${phone.slug}')" class="btn btn-primary mx-auto">Show Details</a>
+                    </div>
+                </div>
+            `
+            searchResults.appendChild(div)
+            // console.log(phone)
+        })
     }
 }
 
