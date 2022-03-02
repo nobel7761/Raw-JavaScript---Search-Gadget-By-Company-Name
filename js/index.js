@@ -127,13 +127,15 @@ const phoneDetails = (details) => {
     detailSection.textContent = '';
     const detailDiv = document.createElement('div');
     detailDiv.innerHTML = `
+    
         <div class="product-detail rounded shadow">
             <div class="product-detail-left">
                 <img src="${details.image}" class="img-fluid">
                 <h4 class="text-primary">${details.name}</h4>
+                <p class="text-danger text-center">${details.releaseDate ? details.releaseDate : "No Release Date Found!!!"}</p>
             </div>
             <div class="product-detail-middle">
-                <p class="text-danger text-center">${details.releaseDate ? details.releaseDate : "No Release Date Found!!!"}</p>
+                
 
                 <h5 ><b><u>Main Features:</u></b> </h5>
                 <p><b>Storage: </b><span>${details.mainFeatures.storage}</span></p>
