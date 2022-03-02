@@ -136,11 +136,16 @@ const phoneDetails = (details) => {
     const detailDiv = document.createElement('div');
     detailDiv.innerHTML = `
         <div class="product-detail rounded shadow" >
-            <div class="product-detail-left">
-                <i onclick="productDetailClose()" class="icon fa-solid fa-circle-xmark" id="icon"></i>
-                <img src="${details.image}" class="img-fluid">
-                <h4 class="text-primary">${details.name}</h4>
-                <p class="text-danger text-center">${details.releaseDate ? details.releaseDate : "No Release Date Found!!!"}</p>
+            <div>
+            <i onclick="productDetailClose()" class="icon fa-solid fa-circle-xmark" id="icon"></i>
+                <div class="product-detail-left">
+                    <img src="${details.image}" class="img-fluid">
+                    <h4 class="text-primary">${details.name}</h4>
+                    <p class="text-danger text-center">
+                        ${details.releaseDate ? details.releaseDate : "No Release Date Found!!!"}
+                    </p>
+                </div>
+                
             </div>
             <div class="product-detail-middle">
                 <h5 ><b><u>Main Features:</u></b> </h5>
