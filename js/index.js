@@ -1,6 +1,12 @@
-const searchResults = document.getElementById('search-results');
-const detailSection = document.getElementById('product-details');
+// spinner function
+const loadSpinner = (spinnerStatus) => {
+    document.getElementById('loadSpinner').style.display = spinnerStatus
+}
 
+const searchResults = document.getElementById('search-results'); //catching search results part
+const detailSection = document.getElementById('product-details'); //catching product details part
+
+// playing with search result
 const search = () => {
     let searchText = document.getElementById('search-input').value;
     searchText = searchText.toLowerCase();
@@ -18,11 +24,12 @@ const search = () => {
         fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
             .then(response => response.json())
             .then(data => searchPhone(data.data))
+        loadSpinner('block');
     }
 }
 
+// displaying search results
 const searchPhone = (phones) => {
-
     if (phones.length === 0) {
         detailSection.textContent = '';
         searchResults.textContent = '';
@@ -36,11 +43,11 @@ const searchPhone = (phones) => {
         console.log(phones.length);
         detailSection.textContent = '';
         searchResults.textContent = '';
-        document.getElementById('see-more-btn').style.display = 'none';
         document.getElementById('search-input').value = '';
         document.getElementById('no-search-result').style.display = 'none';
         document.getElementById('empty-inputField').style.display = 'none';
         document.getElementById('results-number-section').style.display = 'block';
+        document.getElementById('see-more-btn').style.display = 'none';
         document.getElementById('results-number-section').innerText = `20 Results Shown out of ${phones.length} Results!!!`;
 
         if (phones.length > 20) {
@@ -106,7 +113,7 @@ const searchPhone = (phones) => {
                     <div class="card-body  d-flex flex-column">
                         <h5 class="card-title text-center">${phone.phone_name}</h5>
                         <h5 class="brand_name text-center">${phone.brand}</h5>
-                        <a href="#" onclick="getPhone('${phone.slug}')" class="btn btn-primary mx-auto">Show Details</a>
+                        <a href="#" onclick="getPhone('${phone.slug}')" class="btn btn-primary mx-auto"  data-target="#exampleModal">Show Details</a>
                     </div>
                 </div>
             `
@@ -114,6 +121,7 @@ const searchPhone = (phones) => {
             // console.log(phone)
         })
     }
+    loadSpinner('none');
 }
 
 const getPhone = (id) => {
@@ -127,22 +135,20 @@ const phoneDetails = (details) => {
     detailSection.textContent = '';
     const detailDiv = document.createElement('div');
     detailDiv.innerHTML = `
-    
-        <div class="product-detail rounded shadow">
+        <div class="product-detail rounded shadow" >
             <div class="product-detail-left">
+                <i class="icon fa-solid fa-circle-xmark" onclick="productDetailClose()" id="icon"></i>
                 <img src="${details.image}" class="img-fluid">
                 <h4 class="text-primary">${details.name}</h4>
                 <p class="text-danger text-center">${details.releaseDate ? details.releaseDate : "No Release Date Found!!!"}</p>
             </div>
             <div class="product-detail-middle">
-                
-
                 <h5 ><b><u>Main Features:</u></b> </h5>
-                <p><b>Storage: </b><span>${details.mainFeatures.storage}</span></p>
-                <p><b>Display Size: </b><span>${details.mainFeatures.displaySize}</span></p>
-                <p><b>Chipset: </b><span>${details.mainFeatures.chipSet}</span></p>
-                <p><b>Memory: </b><span>${details.mainFeatures.memory}</span></p>
-                <p><b>Sensors: </b><span>${details.mainFeatures.sensors}</span></p>
+                <p><b>Storage: </b><span>${details.mainFeatures ? details.mainFeatures.storage : 'No Information Found!'}</span></p>
+                <p><b>Display Size: </b><span>${details.mainFeatures ? details.mainFeatures.displaySize : 'No Information Found!'}</span></p>
+                <p><b>Chipset: </b><span>${details.mainFeatures ? details.mainFeatures.chipSet : 'No Information Found!'}</span></p>
+                <p><b>Memory: </b><span>${details.mainFeatures ? details.mainFeatures.memory : 'No Information Found!'}</span></p>
+                <p><b>Sensors: </b><span>${details.mainFeatures ? details.mainFeatures.sensors : 'No Information Found!'}</span></p>
             </div>
 
             <div class="product-detail-right">
@@ -157,5 +163,10 @@ const phoneDetails = (details) => {
         </div>
     `
     detailSection.appendChild(detailDiv);
+}
 
+const productDetailClose = () => {
+    document.getElementById('icon').addEventListener('click', () => {
+        document.getElementById('product-details').textContent = '';
+    })
 }
